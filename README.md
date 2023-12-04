@@ -1,9 +1,10 @@
+Проект содержит блок: "Структуры данных и алгоритмы".
 В проекте рассмотрены следующие уроки:
-1. Maven;
-2. AssertJ;
-3. Iterator;
-4. Generic;
-5. List;
-6. Set;
-7. Map;
-8. Tree;
+- Maven;
+- AssertJ;
+- Iterator;
+- Generic;
+- List;
+- Set;
+- Map; 
+- Tree;
