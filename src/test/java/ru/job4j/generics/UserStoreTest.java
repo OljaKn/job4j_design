@@ -81,4 +81,29 @@ class UserStoreTest {
         boolean result = store.replace("10", new User("10", "Maxim"));
         assertThat(result).isFalse();
     }
+
+    @Test
+    void whenAddAndFindThenRoleIsNull() {
+        RoleStore store = new RoleStore();
+        store.add(new Role("1", "Sasha"));
+        Role result = store.findById("1");
+        assertThat(result.getName()).isEqualTo("Sasha");
+    }
+
+    @Test
+    void whenReplaceNotOkThenFalseRole() {
+        RoleStore store = new RoleStore();
+        store.add(new Role("5", "Petya"));
+        boolean result = store.replace("10", new Role("5", "Maxim"));
+        assertThat(result).isFalse();
+    }
+
+    @Test
+    void whenDeleteRoleThenUserIsNull() {
+        RoleStore store = new RoleStore();
+        store.add(new Role("1", "Petr"));
+        store.delete("1");
+        Role result = store.findById("1");
+        assertThat(result).isNull();
+    }
 }
