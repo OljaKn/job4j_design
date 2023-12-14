@@ -70,15 +70,12 @@ public class SimpleArrayList<T> implements SimpleList<T> {
                 if (!hasNext()) {
                     throw new NoSuchElementException();
                 }
-                if (expectedModCount != modCount) {
-                    throw new ConcurrentModificationException();
-                }
                 return container[cursor++];
             }
         };
     }
 
-    public T[] grow() {
+    private T[] grow() {
        return Arrays.copyOf(container, (container.length + 1)  * 2);
     }
 }
