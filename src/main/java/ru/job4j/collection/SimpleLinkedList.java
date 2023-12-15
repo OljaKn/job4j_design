@@ -10,18 +10,19 @@ public class SimpleLinkedList<E> implements SimpleLinked<E> {
     private int size;
     private int modCount;
     private Node<E> head;
-    private Node<E> last;
 
     @Override
     public void add(E value) {
-        Node<E> newElem = new Node<>(value, null);
-        Node<E> tail = last;
-        if (tail == null || size == 0) {
+        Node<E> newElem = new Node<E>(value, null);
+        Node<E> last = head;
+        if (head == null) {
             head = newElem;
         } else {
+            while (last.next != null) {
+                last = last.next;
+            }
             last.next = newElem;
         }
-        last = newElem;
         size++;
         modCount++;
     }
