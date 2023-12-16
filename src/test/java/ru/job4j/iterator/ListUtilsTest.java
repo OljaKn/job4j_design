@@ -49,7 +49,6 @@ class ListUtilsTest {
 
     @Test
     void whenRemoveAll() {
-
         ListUtils.removeAll(elements, input);
         assertThat(elements).hasSize(2).containsSequence(5, 6);
     }
