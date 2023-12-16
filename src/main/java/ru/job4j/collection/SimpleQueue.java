@@ -1,6 +1,5 @@
 package ru.job4j.collection;
 
-import org.w3c.dom.Node;
 
 import java.util.NoSuchElementException;
 
@@ -12,7 +11,7 @@ public class SimpleQueue<T> {
 
 
     public T poll() {
-        if (sizeIn == 0) {
+        if (sizeIn == 0 && sizeOut == 0) {
             throw new NoSuchElementException("Queue is empty");
         }
         if (sizeOut == 0) {
@@ -23,10 +22,8 @@ public class SimpleQueue<T> {
             }
         }
         T temp = null;
-        if (sizeOut != 0) {
             temp = out.pop();
             sizeOut--;
-        }
         return temp;
     }
 
