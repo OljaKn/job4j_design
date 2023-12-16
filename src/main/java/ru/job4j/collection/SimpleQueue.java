@@ -21,10 +21,8 @@ public class SimpleQueue<T> {
                 sizeIn--;
             }
         }
-        T temp = null;
-            temp = out.pop();
             sizeOut--;
-        return temp;
+        return out.pop();
     }
 
     public void push(T value) {
