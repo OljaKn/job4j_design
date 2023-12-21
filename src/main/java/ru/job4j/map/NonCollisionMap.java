@@ -43,13 +43,9 @@ public class NonCollisionMap<K, V> implements SimpleMap<K, V> {
     }
 
     private boolean checkEquals(K key) {
-        int index = checkIndex(key);
-        boolean rsl = Objects.equals(table[index].key, key);
-        if (!Objects.equals(Objects.hashCode(table[index].key), Objects.hashCode(key))) {
-            rsl = false;
-        }
-        return rsl;
-
+        K keyTable = table[checkIndex(key)].key;
+        return Objects.hashCode(key) == Objects.hashCode(keyTable)
+                && Objects.equals(keyTable, key);
     }
 
     private void expand() {
