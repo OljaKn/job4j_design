@@ -1,6 +1,9 @@
 package ru.job4j.tree;
 
 import org.junit.jupiter.api.Test;
+
+import static junit.framework.Assert.assertFalse;
+import static junit.framework.Assert.assertTrue;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class SimpleTreeTest {
@@ -32,5 +35,23 @@ public class SimpleTreeTest {
         tree.add(4, 5);
         tree.add(5, 6);
         assertThat(tree.add(2, 6)).isFalse();
+    }
+
+    @Test
+    public void whenIsBinaryfalse() {
+        Tree<Integer> tree = new SimpleTree<>(1);
+        tree.add(1, 2);
+        tree.add(1, 3);
+        tree.add(1, 4);
+        tree.add(1, 5);
+        assertFalse(tree.isBinary());
+    }
+
+    @Test
+    public void whenIsBinaryTrue() {
+        Tree<Integer> tree = new SimpleTree<>(1);
+        tree.add(1, 2);
+        tree.add(1, 3);
+        assertTrue(tree.isBinary());
     }
 }
