@@ -1,6 +1,5 @@
 package ru.job4j.io;
 
-import java.io.DataInputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
 
