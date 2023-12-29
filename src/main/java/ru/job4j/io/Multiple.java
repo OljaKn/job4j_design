@@ -23,7 +23,7 @@ public class Multiple {
             output.write(System.lineSeparator().getBytes());
             output.write("1 * 9 = 9".getBytes());
             output.write(System.lineSeparator().getBytes());
-        } catch (Exception e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
