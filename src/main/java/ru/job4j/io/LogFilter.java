@@ -17,7 +17,7 @@ public class LogFilter {
             String line;
             while ((line = input.readLine()) != null) {
                 String[] worlds = line.split(" ");
-                if (worlds.length >= 2 && worlds[worlds.length - 2].equals("404")) {
+                if (worlds.length >= 2 && "404".equals(worlds[worlds.length - 2])) {
                     rsl.add(line);
                 }
             }
