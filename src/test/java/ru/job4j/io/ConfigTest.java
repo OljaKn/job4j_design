@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.util.HashMap;
 import java.util.Map;
 
+import static java.beans.Beans.isInstanceOf;
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -23,20 +24,34 @@ class ConfigTest {
     void whenPairWithComment() {
         String path = "data/pair_with_comment.properties";
         Config config = new Config(path);
-        assertThrows(IllegalArgumentException.class, () -> {
-            config.load();
-        });
+        config.load();
+        assertThat(config.value("hibernate.dialect")).isEqualTo("org.hibernate.dialect.PostgreSQLDialect");
     }
 
     @Test
     void whenPairNotKey() {
         String path = "data/pair_not_key.properties";
         Config config = new Config(path);
-        Map<String, String> values = new HashMap<String, String>();
         assertThrows(IllegalArgumentException.class, () -> {
             config.load();
         });
-        assertThat(values.size()).isZero();
     }
 
+    @Test
+    void whenPairNotValue() {
+        String path = "data/pair_not_value.properties";
+        Config config = new Config(path);
+        assertThrows(IllegalArgumentException.class, () -> {
+            config.load();
+        });
+    }
+
+    @Test
+    void whenPairWithoutSymbol() {
+        String path = "data/pair_without_symbol.properties";
+        Config config = new Config(path);
+        assertThrows(IllegalArgumentException.class, () -> {
+            config.load();
+        });
+    }
 }

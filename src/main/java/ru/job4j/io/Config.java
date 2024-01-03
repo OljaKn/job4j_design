@@ -1,6 +1,7 @@
 package ru.job4j.io;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
@@ -18,20 +19,21 @@ public class Config {
 
     public void load() {
         try (BufferedReader reader = new BufferedReader(new FileReader(this.path))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                if (!line.isEmpty() && !line.startsWith("#") && !line.startsWith("=") && !line.endsWith("=")) {
-                    String[] keyValue = line.split("=", 2);
-                    String key = keyValue[0];
-                    String value = keyValue[1];
-                    values.put(key, value);
-                } else {
-                    throw new IllegalArgumentException();
-                }
-            }
-        } catch (IOException e) {
+            reader.lines()
+                        .filter(line -> !line.isEmpty() && !line.startsWith("#"))
+                        .map(el -> el.split("=", 2))
+                        .filter(this::checkCondition)
+                        .forEach(el -> values.put(el[0], el[1]));
+            } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private boolean checkCondition(String[] keyValue) {
+        if (keyValue.length != 2 || keyValue[0].length() == 0 || keyValue[1].length() == 0) {
+            throw  new IllegalArgumentException();
+        }
+        return true;
     }
 
     public String value(String key) {
