@@ -5,7 +5,6 @@ import java.util.StringJoiner;
 
 public class Analysis {
     public void unavailable(String source, String target) {
-        StringJoiner sj = new StringJoiner("");
         try (BufferedReader reader = new BufferedReader(new FileReader(source));
              PrintWriter writer = new PrintWriter(target)) {
             String line;
@@ -17,15 +16,14 @@ public class Analysis {
                 if (("400".equals(status) || "500".equals(status)) && !isUnavailable) {
                     isUnavailable = true;
                     startTime = str[1];
-                    sj.add(startTime).add(";");
+                    writer.append(startTime).append(";");
                 }
                 if (("200".equals(status) || "300".equals(status)) && isUnavailable) {
                     isUnavailable = false;
                     startTime = str[1];
-                    sj.add(startTime).add(";").add(System.lineSeparator());
+                    writer.append(startTime).append(";").append(System.lineSeparator());
                 }
             }
-            writer.print(sj);
         } catch (IOException e) {
             e.printStackTrace();
         }
