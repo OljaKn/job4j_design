@@ -8,7 +8,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 class AnalysisTest {
     @Test
-    void AnalysisTest(@TempDir Path tempDir) throws IOException {
+    void unavailableTest(@TempDir Path tempDir) throws IOException {
         File source = tempDir.resolve("source.txt").toFile();
         try (PrintWriter output = new PrintWriter(source)) {
             output.println("200 10:56:01");
@@ -28,7 +28,7 @@ class AnalysisTest {
     }
 
     @Test
-    void AnalysisTestAnd(@TempDir Path tempDir) throws IOException {
+    void unavailableTestAnd(@TempDir Path tempDir) throws IOException {
         File source = tempDir.resolve("source.txt").toFile();
         try (PrintWriter output = new PrintWriter(source)) {
             output.println("200 10:56:01");
@@ -46,5 +46,4 @@ class AnalysisTest {
         }
         assertThat("10:58:01;10:59:01;11:02:02;11:05:02;").hasToString(result.toString());
     }
-
 }
