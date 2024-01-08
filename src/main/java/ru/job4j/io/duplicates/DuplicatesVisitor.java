@@ -24,13 +24,13 @@ public class DuplicatesVisitor extends SimpleFileVisitor<Path> {
                                      BasicFileAttributes attributes) throws IOException {
         FileProperty fileProperty = new FileProperty(attributes.size(), file.getFileName().toString());
         List<Path> duplicate = new ArrayList<>();
-       if (!propertyMap.containsKey(fileProperty)) {
-           propertyMap.put(fileProperty, duplicate);
-           duplicate.add(file.toAbsolutePath());
-       } else {
-           duplicate.add(file.toAbsolutePath());
-           propertyMap.put(fileProperty, duplicate);
-       }
+        if (!propertyMap.containsKey(fileProperty)) {
+            propertyMap.put(fileProperty, duplicate);
+            duplicate.add(file.toAbsolutePath());
+        } else {
+            duplicate.add(file.toAbsolutePath());
+            propertyMap.put(fileProperty, duplicate);
+        }
         return super.visitFile(file, attributes);
     }
 }
