@@ -15,7 +15,7 @@ public class DuplicatesVisitor extends SimpleFileVisitor<Path> {
         this.propertyMap = new HashMap<>();
     }
 
-    public List<Path> getPropertyMap() {
+    public List<Path> getPaths() {
         return new ArrayList<>();
     }
 
