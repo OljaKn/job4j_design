@@ -22,7 +22,7 @@ public class Search {
         if (!Files.isDirectory(start) || !Files.exists(start)) {
             throw new IllegalArgumentException("Folder does not exist.");
         }
-        if (!args[1].startsWith("./")) {
+        if (!args[1].startsWith("./") && args[1].length() > 1) {
         throw new IllegalArgumentException("Parametr is not.");
         }
     }
