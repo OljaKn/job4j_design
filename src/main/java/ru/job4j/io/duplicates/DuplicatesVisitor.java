@@ -16,7 +16,13 @@ public class DuplicatesVisitor extends SimpleFileVisitor<Path> {
     }
 
     public List<Path> getPaths() {
-        return new ArrayList<>();
+        List<Path> rsl = new ArrayList<>();
+        for (List<Path> list: propertyMap.values()) {
+            if (list.size() > 1) {
+                rsl.addAll(list);
+            }
+        }
+        return rsl;
     }
 
     @Override
@@ -28,8 +34,7 @@ public class DuplicatesVisitor extends SimpleFileVisitor<Path> {
             propertyMap.put(fileProperty, duplicate);
             duplicate.add(file.toAbsolutePath());
         } else {
-            duplicate.add(file.toAbsolutePath());
-            propertyMap.put(fileProperty, duplicate);
+            propertyMap.get(fileProperty).add(file.toAbsolutePath());
         }
         return super.visitFile(file, attributes);
     }
