@@ -22,8 +22,8 @@ public class Search {
         if (!Files.isDirectory(start) || !Files.exists(start)) {
             throw new IllegalArgumentException("Folder does not exist.");
         }
-        if (!args[1].endsWith("./")) {
-        throw new IllegalArgumentException("File is not.");
+        if (!args[1].startsWith("./")) {
+        throw new IllegalArgumentException("Parametr is not.");
         }
     }
 
