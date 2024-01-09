@@ -17,6 +17,17 @@ public class EchoServer {
                     if (str.contains("msg=Bye")) {
                         server.isClosed();
                     }
+                    if (str.contains("msg=Hello")) {
+                        output.write("Hello".getBytes());
+                    }
+                    if (str.contains("msg=Exit")) {
+                        server.isClosed();
+                    }
+                    if (str.contains("msg=What")) {
+                        output.write("What".getBytes());
+                    } else {
+                        output.write(input.read());
+                    }
                     for (String string = input.readLine(); string != null && !string.isEmpty(); string = input.readLine()) {
                         System.out.println(string);
                     }
