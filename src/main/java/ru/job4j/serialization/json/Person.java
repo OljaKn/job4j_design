@@ -1,12 +1,24 @@
 package ru.job4j.serialization.json;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Arrays;
 
+@XmlRootElement(name = "person")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Person {
-    private final boolean sex;
-    private final int age;
-    private final Contact contact;
-    private final String[] statuses;
+    @XmlAttribute
+    private boolean sex;
+    @XmlAttribute
+    private int age;
+    private Contact contact;
+    private String[] statuses;
+    public Person() { }
+
+    public Person(boolean b, int i, Contact contact, String worker, String married) {
+    }
 
     public Person(boolean sex, int age, Contact contact, String[] statuses) {
         this.sex = sex;
