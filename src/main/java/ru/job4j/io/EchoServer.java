@@ -16,14 +16,11 @@ public class EchoServer {
                     String str = input.readLine();
                     if (str.contains("msg=Bye")) {
                         server.isClosed();
-                    }
-                    if (str.contains("msg=Hello")) {
+                    } else if (str.contains("msg=Hello")) {
                         output.write("Hello".getBytes());
-                    }
-                    if (str.contains("msg=Exit")) {
+                    } else if (str.contains("msg=Exit")) {
                         server.isClosed();
-                    }
-                    if (str.contains("msg=What")) {
+                    } else if (str.contains("msg=What")) {
                         output.write("What".getBytes());
                     } else {
                         output.write(input.read());
