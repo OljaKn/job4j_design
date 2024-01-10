@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<employee name="Vasya" age="40" probation="true">
+    <card numberCard="65664"/>
+    <functions>
+        <function>IT</function>
+        <function>Senior</function>
+    </functions>
+</employee>
