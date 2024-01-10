@@ -1,60 +1,35 @@
 package ru.job4j.serialization.json;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-
-import javax.xml.bind.JAXBContext;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import javax.xml.bind.JAXBException;
-import javax.xml.bind.Marshaller;
-import javax.xml.bind.Unmarshaller;
 import java.io.IOException;
-import java.io.StringReader;
-import java.io.StringWriter;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) throws JAXBException, IOException {
-        /*final Person person = new Person(false, 30, new Contact("11-111"),
-                new String[] {"Worker", "Married"});
+        /* JSONObject из json-строки строки */
+        JSONObject jsonContact = new JSONObject("{\"phone\":\"+7(924)111-111-11-11\"}");
 
+        /* JSONArray из ArrayList */
+        List<String> list = new ArrayList<>();
+        list.add("Student");
+        list.add("Free");
+        JSONArray jsonStatuses = new JSONArray(list);
 
-        final Gson gson = new GsonBuilder().create();
-        System.out.println(gson.toJson(person));
+        /* JSONObject напрямую методом put */
+        final Person person = new Person(false, 30, new Contact("11-111"), new String[]{"Worker", "Married"});
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("sex", person.getSex());
+        jsonObject.put("age", person.getAge());
+        jsonObject.put("contact", jsonContact);
+        jsonObject.put("statuses", jsonStatuses);
 
-        final String personJson =
-                "{"
-                        + "\"sex\":false,"
-                        + "\"age\":35,"
-                        + "\"contact\":"
-                        + "{"
-                        + "\"phone\":\"+7(924)111-111-11-11\""
-                        + "},"
-                        + "\"statuses\":"
-                        + "[\"Student\",\"Free\"]"
-                        + "}";
+        /* Выведем результат в консоль */
+        System.out.println(jsonObject.toString());
 
-        final Person personMod = gson.fromJson(personJson, Person.class);
-        System.out.println(personMod);*/
-
-        Person person = new Person(false, 30, new Contact("11-111"), "Worker", "Married");
-        /* Получаем контекст для доступа к АПИ */
-        JAXBContext context = JAXBContext.newInstance(Person.class);
-        /* Создаем сериализатор */
-        Marshaller marshaller = context.createMarshaller();
-        /* Указываем, что нам нужно форматирование */
-        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-        String xml = "";
-        try (StringWriter writer = new StringWriter()) {
-            /* Сериализуем */
-            marshaller.marshal(person, writer);
-            xml = writer.getBuffer().toString();
-            System.out.println(xml);
-        }
-        /* Для десериализации нам нужно создать десериализатор */
-        Unmarshaller unmarshaller = context.createUnmarshaller();
-        try (StringReader reader = new StringReader(xml)) {
-            /* десериализуем */
-            Person result = (Person) unmarshaller.unmarshal(reader);
-            System.out.println(result);
-        }
+        /* Преобразуем объект person в json-строку */
+        System.out.println(new JSONObject(person).toString());
     }
 }
