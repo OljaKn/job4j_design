@@ -7,7 +7,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Card {
     @XmlAttribute
     private int numberCard;
-    public Card() { }
+    public Card() {
+
+    }
 
     public Card(int numberCard) {
         this.numberCard = numberCard;
