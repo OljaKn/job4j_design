@@ -1,28 +1,30 @@
 package ru.job4j.serialization.json;
 
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.Marshaller;
-import javax.xml.bind.Unmarshaller;
-import java.io.StringReader;
-import java.io.StringWriter;
+import org.json.JSONArray;
+import org.json.JSONObject;
+import java.util.ArrayList;
+import java.util.List;
 
 public class EmployeeMain {
     public static void main(String[] args) throws Exception {
-        Employee employee = new Employee("Vasya", 40, true, new Card(65664),
+        JSONObject jsonCard = new JSONObject("{\"numberCard\":65664}");
+
+        List<String> list = new ArrayList<>();
+        list.add("IT");
+        list.add("Java junior developer");
+        JSONArray jsonFunction = new JSONArray(list);
+
+        final Employee employee = new Employee("Vasya", 40, true, new Card(65664),
                 new String[] {"IT", "Java junior developer"});
-        JAXBContext context = JAXBContext.newInstance(Employee.class);
-        Marshaller marshaller = context.createMarshaller();
-        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-        String xml = "";
-        try (StringWriter writer = new StringWriter()) {
-            marshaller.marshal(employee, writer);
-            xml = writer.getBuffer().toString();
-            System.out.println(xml);
-        }
-        Unmarshaller unmarshaller = context.createUnmarshaller();
-        try (StringReader reader = new StringReader(xml)) {
-            Employee result = (Employee) unmarshaller.unmarshal(reader);
-            System.out.println(result);
-        }
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("name", employee.getName());
+        jsonObject.put("age", employee.getAge());
+        jsonObject.put("probation", employee.getProbation());
+        jsonObject.put("numberCard", jsonCard);
+        jsonObject.put("function", jsonFunction);
+
+        System.out.println(jsonObject.toString());
+
+        System.out.println(new JSONObject(employee).toString());
     }
 }

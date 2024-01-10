@@ -29,6 +29,26 @@ public class Employee {
         this.function = function;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public boolean getProbation() {
+        return probation;
+    }
+
+    public Card getCard() {
+        return card;
+    }
+
+    public String[] getFunction() {
+        return function;
+    }
+
     @Override
     public String toString() {
         return "Employee{" + "name='" + name + '\''
