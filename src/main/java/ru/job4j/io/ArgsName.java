@@ -9,33 +9,45 @@ public class ArgsName {
 
         public String get(String key) {
             if (!values.containsKey(key)) {
-                throw new IllegalArgumentException("This key: " + key + " is missing");
+                throw new IllegalArgumentException("This key: '" + key + "' is missing");
             }
             return values.get(key);
         }
 
         private void parse(String[] args) {
-            if (args.length == 0) {
-                throw new IllegalArgumentException();
-            }
-            for (String arg : args) {
-                if (validate(arg)) {
-                    String[] parts = arg.replaceFirst("-", "").split("=");
-                    String key = parts[0];
-                    String value = parts[1];
-                    values.put(key, value);
+            if (validate(args)) {
+                for (String arg : args) {
+
+                    String[] param = arg.split("=");
+                    if (param.length != 2 || param[0].isEmpty()) {
+                        throw new IllegalArgumentException("Error: This argument '" + arg + "' does not contain a key");
+                    } else if (param[1].isEmpty()) {
+                        throw new IllegalArgumentException("Error: This argument '" + arg + "' does not contain a value");
+                    }
+                    values.put(param[0].replace("-", ""), param[1]);
                 }
             }
         }
 
-            public static ArgsName of(String[]args) {
+        private boolean validate(String[] args) {
+            for (String arg : args) {
+                if (!arg.startsWith("-")) {
+                     throw new IllegalArgumentException("Error: This argument '" + arg + "' does not start with a '-' character");
+                 }
+                if (!arg.contains("=")) {
+                    throw new IllegalArgumentException("Error: This argument '" + arg + "' does not contain an equal sign");
+                 }
+             }
+                return true;
+        }
+
+        public static ArgsName of(String[]args) {
+            if (args.length == 0) {
+                    throw new IllegalArgumentException("Arguments not passed to program");
+                }
                 ArgsName names = new ArgsName();
                 names.parse(args);
                 return names;
-            }
-
-            private boolean validate(String args) {
-                return args.matches("-.*=.*");
             }
 
             public static void main(String[]args) {
