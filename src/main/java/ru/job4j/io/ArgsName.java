@@ -17,13 +17,7 @@ public class ArgsName {
         private void parse(String[] args) {
             if (validate(args)) {
                 for (String arg : args) {
-
-                    String[] param = arg.split("=");
-                    if (param.length != 2 || param[0].isEmpty()) {
-                        throw new IllegalArgumentException("Error: This argument '" + arg + "' does not contain a key");
-                    } else if (param[1].isEmpty()) {
-                        throw new IllegalArgumentException("Error: This argument '" + arg + "' does not contain a value");
-                    }
+                    String[] param = arg.split("=", 2);
                     values.put(param[0].replace("-", ""), param[1]);
                 }
             }
@@ -37,6 +31,12 @@ public class ArgsName {
                 if (!arg.contains("=")) {
                     throw new IllegalArgumentException("Error: This argument '" + arg + "' does not contain an equal sign");
                  }
+                if (arg.startsWith("-=")) {
+                    throw new IllegalArgumentException("Error: This argument '" + arg + "' does not contain a key");
+                }
+                if (arg.indexOf("=") == arg.length() - 1) {
+                    throw new IllegalArgumentException("Error: This argument '" + arg + "' does not contain a value");
+                }
              }
                 return true;
         }
