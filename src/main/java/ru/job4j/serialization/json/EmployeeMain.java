@@ -22,7 +22,6 @@ public class EmployeeMain {
         jsonObject.put("probation", employee.getProbation());
         jsonObject.put("numberCard", jsonCard);
         jsonObject.put("function", jsonFunction);
-
         System.out.println(jsonObject.toString());
 
         System.out.println(new JSONObject(employee).toString());
