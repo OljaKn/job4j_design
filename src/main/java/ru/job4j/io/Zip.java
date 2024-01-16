@@ -2,9 +2,11 @@ package ru.job4j.io;
 
 import java.io.*;
 
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.Set;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
@@ -35,18 +37,34 @@ public class Zip {
             e.printStackTrace();
         }
     }
+private static void validateArgs(String[] args, Path dir) throws FileNotFoundException {
+    if (args.length != 3) {
+        throw new IllegalArgumentException();
+    }
+    ArgsName arguments = ArgsName.of(args);
+    Set<String> argsKey = arguments.getKeys();
+    for (String key: argsKey) {
+        if (!"d".equals(key) && !"e".equals(key) && !"o".equals(key)) {
+            throw new IllegalArgumentException();
+        }
+    }
+    if (!Files.exists(dir)) {
+        throw new FileNotFoundException();
+    }
+
+}
 
     public static void main(String[] args) throws IOException {
+        ArgsName argsName = new ArgsName();
         Zip zip = new Zip();
-        ArgsName arguments = ArgsName.of(args);
-        String directory = arguments.get("d");
-        String exclude = arguments.get("e");
-        String output = arguments.get("o");
-
-        File target = new File(output);
-        File dir = new File(directory);
-        List<Path> files = new Search().search(Paths.get(directory), file -> !file.toString().endsWith(exclude));
-
-        zip.packFiles(files, target.toPath());
+        ArgsName arguments1 = ArgsName.of(args);
+        String directory = arguments1.get("d");
+        String exclude = arguments1.get("e");
+        String output = arguments1.get("o");
+        validateArgs(args, Path.of(directory));
+        Search search = new Search();
+        List<Path> fileList = search.search(Path.of(directory),
+                p -> !p.toFile().getName().endsWith(exclude));
+        zip.packFiles(fileList, Path.of(output));
     }
 }
