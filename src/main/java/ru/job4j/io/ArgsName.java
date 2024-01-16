@@ -2,11 +2,15 @@ package ru.job4j.io;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 public class ArgsName {
 
         private final Map<String, String> values = new HashMap<>();
 
+        public Set<String> getKeys() {
+            return values.keySet();
+         }
         public String get(String key) {
             if (!values.containsKey(key)) {
                 throw new IllegalArgumentException("This key: '" + key + "' is missing");
@@ -23,7 +27,7 @@ public class ArgsName {
             }
         }
 
-        private boolean validate(String[] args) {
+        public boolean validate(String[] args) {
             for (String arg : args) {
                 if (!arg.startsWith("-")) {
                      throw new IllegalArgumentException("Error: This argument '" + arg + "' does not start with a '-' character");
@@ -57,4 +61,5 @@ public class ArgsName {
                 ArgsName zip = ArgsName.of(new String[]{"-out=project.zip", "-encoding=UTF-8"});
                 System.out.println(zip.get("out"));
             }
+
 }
