@@ -11,7 +11,7 @@ public class Balancer {
                 Integer num = source.next();
                 ArrayList<Integer> list = nodes.get(index);
                 list.add(num);
-                index = index + 1 % nodes.size();
+                index++;
                 if (index == nodes.size()) {
                     index = 0;
                 }
