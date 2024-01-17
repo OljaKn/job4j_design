@@ -16,28 +16,27 @@ public class UsageEncoding {
                 "Новая строка 5"
         );
         for (String string : strings) {
-            encoding.writeDataInFile(path, string);
+            encoding.writeDataInFile(path, strings);
         }
         String string = encoding.readFile(path);
         System.out.println("Данные из файла: ");
         System.out.println(string);
     }
-
-    public String readFile(String path) {
-        StringBuilder builder = new StringBuilder();
-        try (BufferedReader reader = new BufferedReader(new FileReader(path, Charset.forName("WINDOWS-1251")))) {
-            reader.lines()
-                    .map(string -> string + System.lineSeparator())
-                    .forEach(builder::append);
-        } catch (IOException e) {
-            e.printStackTrace();
+        public String readFile(String path) {
+            StringBuilder builder = new StringBuilder();
+            try (BufferedReader reader = new BufferedReader(new FileReader(path, Charset.forName("WINDOWS-1251")))) {
+                reader.lines()
+                        .map(string -> string + System.lineSeparator())
+                        .forEach(builder::append);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return builder.toString();
         }
-        return builder.toString();
-    }
 
-    public void writeDataInFile(String path, String data) {
+    public void writeDataInFile(String path, List<String> data) {
         try (PrintWriter writer = new PrintWriter(new FileWriter(path, Charset.forName("WINDOWS-1251"), true))) {
-            writer.println(data);
+            data.forEach(writer::println);
         } catch (IOException e) {
             e.printStackTrace();
         }

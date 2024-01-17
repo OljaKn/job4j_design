@@ -1,0 +1,16 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Dir" type="Application" factoryName="Application" nameIsGenerated="true">
+    <option name="MAIN_CLASS_NAME" value="ru.job4j.io.Dir" />
+    <module name="job4j_design" />
+    <option name="PROGRAM_PARAMETERS" value="C:\" />
+    <extension name="coverage">
+      <pattern>
+        <option name="PATTERN" value="ru.job4j.io.*" />
+        <option name="ENABLED" value="true" />
+      </pattern>
+    </extension>
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
