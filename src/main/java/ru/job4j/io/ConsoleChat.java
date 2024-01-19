@@ -31,12 +31,12 @@ public class ConsoleChat {
         while (continueChat) {
             String user = scanner.nextLine();
             logList.add("User: " + user);
-            if (user.equalsIgnoreCase(OUT)) {
+            if (OUT.equalsIgnoreCase(user)) {
                 continueChat = false;
                 break;
-            } else if (user.equalsIgnoreCase(STOP)) {
+            } else if (STOP.equalsIgnoreCase(user)) {
                 flag = true;
-            } else if (user.equalsIgnoreCase(CONTINUE)) {
+            } else if (CONTINUE.equalsIgnoreCase(user)) {
                 flag = false;
                 String bot = botAnswersList.get(random.nextInt(botAnswersList.size()));
                 logList.add("Bot: " + bot);
