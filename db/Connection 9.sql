@@ -20,14 +20,12 @@ values ('Сыр Российский', '2024-01-31', 850, 1);
 insert into product(name, expired_date, price, type_id)
 values ('Сыр Пармезан', '2024-03-01', 1500, 1);
 
-
 insert into product(name, expired_date, price, type_id)
 values ('Parmalat', '2024-04-25', 150, 2);
 insert into product(name, expired_date, price, type_id)
 values ('Крассная цена', '2024-01-01', 50, 2);
 insert into product(name, expired_date, price, type_id)
 values ('Молоко', '2024-03-01', 89, 2);
-
 
 insert into product(name, expired_date, price, type_id)
 values ('Замороженные котлеты куриные', '2024-03-20', 280, 3);
