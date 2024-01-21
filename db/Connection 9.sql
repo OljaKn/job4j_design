@@ -11,56 +11,56 @@ create table product(
     type_id int references type(id)
 );
 
-insert into type(name) values ('Сыры'), ('Молоко'), ('Заморозка'), ('Соки');
+insert into type(name) values ('РЎС‹СЂС‹'), ('РњРѕР»РѕРєРѕ'), ('Р—Р°РјРѕСЂРѕР·РєР°'), ('РЎРѕРєРё');
 
-insert into product(name, expired_date, price, type_id) 
-values ('Сыр Гауда', '2024-02-25', 690, 1);
-insert into product(name, expired_date, price, type_id) 
-values ('Сыр Российский', '2024-01-31', 850, 1);
-insert into product(name, expired_date, price, type_id) 
-values ('Сыр Пармезан', '2024-03-01', 1500, 1);
+insert into product(name, expired_date, price, type_id)
+values ('РЎС‹СЂ Р“Р°СѓРґР°', '2024-02-25', 690, 1);
+insert into product(name, expired_date, price, type_id)
+values ('РЎС‹СЂ Р РѕСЃСЃРёР№СЃРєРёР№', '2024-01-31', 850, 1);
+insert into product(name, expired_date, price, type_id)
+values ('РЎС‹СЂ РџР°СЂРјРµР·Р°РЅ', '2024-03-01', 1500, 1);
 
 
-insert into product(name, expired_date, price, type_id) 
+insert into product(name, expired_date, price, type_id)
 values ('Parmalat', '2024-04-25', 150, 2);
-insert into product(name, expired_date, price, type_id) 
-values ('Крассная цена', '2024-01-01', 50, 2);
-insert into product(name, expired_date, price, type_id) 
-values ('Молоко', '2024-03-01', 89, 2);
+insert into product(name, expired_date, price, type_id)
+values ('РљСЂР°СЃСЃРЅР°СЏ С†РµРЅР°', '2024-01-01', 50, 2);
+insert into product(name, expired_date, price, type_id)
+values ('РњРѕР»РѕРєРѕ', '2024-03-01', 89, 2);
 
 
-insert into product(name, expired_date, price, type_id) 
-values ('Замороженные котлеты куриные', '2024-03-20', 280, 3);
-insert into product(name, expired_date, price, type_id) 
-values ('Стейк семги', '2025-10-12', 1500, 3);
-insert into product(name, expired_date, price, type_id) 
-values ('Мороженое мясо свинины', '2025-01-01', 250, 3);
+insert into product(name, expired_date, price, type_id)
+values ('Р—Р°РјРѕСЂРѕР¶РµРЅРЅС‹Рµ РєРѕС‚Р»РµС‚С‹ РєСѓСЂРёРЅС‹Рµ', '2024-03-20', 280, 3);
+insert into product(name, expired_date, price, type_id)
+values ('РЎС‚РµР№Рє СЃРµРјРіРё', '2025-10-12', 1500, 3);
+insert into product(name, expired_date, price, type_id)
+values ('РњРѕСЂРѕР¶РµРЅРѕРµ РјСЏСЃРѕ СЃРІРёРЅРёРЅС‹', '2025-01-01', 250, 3);
 
-insert into product(name, expired_date, price, type_id) 
-values ('Сок RICH', '2025-10-20', 200, 4);
-insert into product(name, expired_date, price, type_id) 
-values ('Добрый', '2025-12-08', 150, 4);
+insert into product(name, expired_date, price, type_id)
+values ('РЎРѕРє RICH', '2025-10-20', 200, 4);
+insert into product(name, expired_date, price, type_id)
+values ('Р”РѕР±СЂС‹Р№', '2025-12-08', 150, 4);
 
 select * from product where type_id = 1;
 
-select * from product where name like '%Мороженое%';
+select * from product where name like '%РњРѕСЂРѕР¶РµРЅРѕРµ%';
 
 select * from product where expired_date < '2024-01-21';
 
-select name, price 
+select name, price
 from product where price = (select max(price) from product);
 
-select t.name, count(t.name) 
+select t.name, count(t.name)
 from product p join type t on p.type_id = t.id
 group by t.name;
 
 select p.name
 from product p join type t on p.type_id = t.id
-where t.name = 'Сыры';
+where t.name = 'РЎС‹СЂС‹';
 
 select p.name
 from product p join type t on p.type_id = t.id
-where t.name = 'Молоко';
+where t.name = 'РњРѕР»РѕРєРѕ';
 
 select t.name, count(t.name) 
 from product p join type t on p.type_id = t.id
