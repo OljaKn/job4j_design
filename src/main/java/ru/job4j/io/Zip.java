@@ -37,9 +37,6 @@ public class Zip {
         }
     }
 private static void validateArgs(ArgsName argsName, Path dir) throws FileNotFoundException {
-    /*if (argsName.length != 3) {
-        throw new IllegalArgumentException();
-    }*/
     Set<String> argsKey = argsName.getKeys();
     for (String key: argsKey) {
         if (!"d".equals(key) && !"e".equals(key) && !"o".equals(key)) {
