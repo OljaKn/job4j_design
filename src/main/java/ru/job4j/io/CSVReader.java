@@ -3,9 +3,7 @@ package ru.job4j.io;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class CSVReader {
@@ -13,13 +11,13 @@ public class CSVReader {
         List<String> rsl = new ArrayList<>();
         List<List<String>> tmp = readCSV(argsName);
         StringBuilder sb = new StringBuilder();
+        List<String> header = tmp.get(0);
+        List<Integer> filterIndex = new ArrayList<>();
         String[] filter = argsName.get("filter").split(",");
-        int[] filterIndex = new int[filter.length];
-        for (int i = 0; i < tmp.get(0).size(); i++) {
-            for (int j = 0; j < filter.length; j++) {
-                if (tmp.get(0).get(i).equals(filter[j])) {
-                    filterIndex[j] = i;
-                }
+        for (String columnName : filter) {
+            int index = header.indexOf(columnName);
+            if (index != -1) {
+                filterIndex.add(index);
             }
         }
         for (List<String> strings : tmp) {
@@ -28,7 +26,7 @@ public class CSVReader {
             }
             sb.deleteCharAt(sb.length() - 1).append(System.lineSeparator());
         }
-        rsl.add(String.valueOf(sb.deleteCharAt(sb.length() - 1)));
+        rsl.add(sb.toString());
         saveCSV(rsl, argsName);
     }
 
@@ -43,7 +41,7 @@ public class CSVReader {
             e.printStackTrace();
         }
         return phrases.stream()
-                .map(phrase -> List.of(phrase.split(";")))
+                .map(phrase -> List.of(phrase.split(argsName.get("delimiter"))))
                 .collect(Collectors.toList());
     }
 
@@ -66,7 +64,7 @@ public class CSVReader {
         if (!Files.exists(Paths.get(argsName.get("path")))) {
             throw new IllegalArgumentException("Directory is not.");
         }
-        if (!argsName.get("delimiter").equals(";")) {
+        if (!argsName.get("delimiter").equals(";") && !argsName.get("delimiter").equals(",")) {
             throw new IllegalArgumentException("Invalid CSV delimiter");
         }
         if (argsName.get("out").isEmpty()) {
