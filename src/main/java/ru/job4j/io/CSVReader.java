@@ -10,7 +10,6 @@ public class CSVReader {
     public static void handle(ArgsName argsName) {
         List<String> rsl = new ArrayList<>();
         List<List<String>> tmp = readCSV(argsName);
-        StringBuilder sb = new StringBuilder();
         List<String> header = tmp.get(0);
         List<Integer> filterIndex = new ArrayList<>();
         String[] filter = argsName.get("filter").split(",");
@@ -21,12 +20,13 @@ public class CSVReader {
             }
         }
         for (List<String> strings : tmp) {
+            StringBuilder sb = new StringBuilder();
             for (int index : filterIndex) {
                 sb.append(strings.get(index)).append(argsName.get("delimiter"));
             }
-            sb.deleteCharAt(sb.length() - 1).append(System.lineSeparator());
+            sb.deleteCharAt(sb.length() - 1);
+            rsl.add(sb.toString());
         }
-        rsl.add(sb.toString());
         saveCSV(rsl, argsName);
     }
 
