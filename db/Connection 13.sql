@@ -23,13 +23,7 @@ CREATE TABLE orders(
 insert into orders (amount, customer_id) values (2, 1);
 insert into orders (amount, customer_id) values (3, 2);
 insert into orders (amount, customer_id) values (1, 3);
-insert into orders (amount, customer_id) values (10, 4);
-insert into orders (amount, customer_id) values (5, 5);
-insert into orders (amount, customer_id) values (4, null);
-insert into orders (amount, customer_id) values (null, null);
-update orders set amount = null where amount = 10;
-update orders set customer_id = null where amount = 3;
+select * from orders;
 
 select * from customers 
 where customers.id not in (select customer_id from orders);
-
