@@ -18,13 +18,10 @@ public class TableEditor implements AutoCloseable {
     }
 
     private void initConnection() throws ClassNotFoundException, SQLException {
-        Properties properties = new Properties();
-        try (InputStream in = TableEditor.class.getClassLoader().getResourceAsStream("app.properties")) {
-            properties.load(in);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        String className = properties.getProperty("driver_class");
+        if (className != null) {
+            Class.forName(className);
         }
-        Class.forName(properties.getProperty("driver_class"));
         connection = DriverManager.getConnection(
                 properties.getProperty("url"),
                 properties.getProperty("username"),
@@ -32,12 +29,21 @@ public class TableEditor implements AutoCloseable {
     }
 
     public void createTable(String tableName) throws SQLException {
-        String sql = "CREATE TABLE IF NOT EXISTS" + tableName;
-                Statement statement = connection.createStatement();
-                statement.execute(sql);
+       try (Statement statement = connection.createStatement()) {
+           String sql = String.format(
+                   "CREATE TABLE IF NOT EXISTS %s",
+                   tableName);
+           statement.execute(sql);
+       }
     }
 
-    public void dropTable(String tableName) {
+    public void dropTable(String tableName) throws SQLException {
+        try (Statement statement = connection.createStatement()) {
+            String sql = String.format(
+                    "DROP TABLE %s;",
+                    tableName);
+            statement.execute(sql);
+        }
     }
 
     public void addColumn(String tableName, String columnName, String type) {
@@ -77,6 +83,14 @@ public class TableEditor implements AutoCloseable {
     }
 
     public static void main(String[] args) throws Exception {
+        Properties config = new Properties();
+        try (InputStream in = TableEditor.class.getClassLoader().getResourceAsStream("app.properties")) {
+            config.load(in);
+        }
+        TableEditor tableEditor = new TableEditor(config);
+        tableEditor.initConnection();
+        tableEditor.createTable("Transactions");
+        tableEditor.getTableScheme("Transactions");
 
     }
 }
