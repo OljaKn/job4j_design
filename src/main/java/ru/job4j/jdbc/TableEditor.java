@@ -47,7 +47,6 @@ public class TableEditor implements AutoCloseable {
                     "DROP TABLE %s;",
                     tableName);
             statement.execute(sql);
-            System.out.println(getTableScheme(tableName));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -120,15 +119,14 @@ public class TableEditor implements AutoCloseable {
         Properties properties = new Properties();
         try (InputStream in = TableEditor.class.getClassLoader().getResourceAsStream("app.properties")) {
             properties.load(in);
+            TableEditor tableEditor = new TableEditor(properties);
+            tableEditor.initConnection();
+            tableEditor.createTable("demo_table");
+            tableEditor.addColumn("demo_table", "last_name", "text");
+            tableEditor.addColumn("demo_table", "age", "int");
+            tableEditor.dropColumn("demo_table", "last_name");
+            tableEditor.renameColumn("demo_table", "age", "year");
+            tableEditor.dropTable("demo_table");
         }
-        TableEditor tableEditor = new TableEditor(properties);
-        tableEditor.initConnection();
-        tableEditor.createTable("demo_table");
-        tableEditor.dropTable("demo_table");
-        tableEditor.createTable("demo_table");
-        tableEditor.addColumn("demo_table", "last_name", "text");
-        tableEditor.addColumn("demo_table", "age", "int");
-        tableEditor.dropColumn("demo_table", "last_name");
-        tableEditor.renameColumn("demo_table", "age", "year");
     }
 }
