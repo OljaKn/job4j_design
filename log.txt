@@ -1,0 +1,34 @@
+[0.010s][info][gc] Using The Z Garbage Collector
+[0.154s][info][gc] GC(0) Garbage Collection (Warmup) 6M(38%)->4M(25%)
+[0.245s][info][gc] GC(1) Garbage Collection (Warmup) 4M(25%)->4M(25%)
+[1.050s][info][gc] GC(2) Garbage Collection (Warmup) 6M(38%)->6M(38%)
+[9.044s][info][gc] GC(3) Garbage Collection (Proactive) 8M(50%)->6M(38%)
+[34.250s][info][gc] GC(4) Garbage Collection (Proactive) 10M(62%)->12M(75%)
+[34.284s][info][gc] Allocation Stall (main) 9.772ms
+[34.285s][info][gc] GC(5) Garbage Collection (Allocation Stall) 16M(100%)->10M(62%)
+[34.303s][info][gc] Allocation Stall (main) 8.611ms
+[34.304s][info][gc] GC(6) Garbage Collection (Allocation Stall) 16M(100%)->12M(75%)
+[34.320s][info][gc] Relocation Stall (main) 0.638ms
+[34.320s][info][gc] GC(7) Garbage Collection (Allocation Stall) 16M(100%)->12M(75%)
+[34.321s][info][gc] Allocation Stall (main) 9.730ms
+[34.333s][info][gc] Allocation Stall (main) 6.081ms
+[34.334s][info][gc] GC(8) Garbage Collection (Allocation Stall) 16M(100%)->14M(88%)
+[34.454s][info][gc] GC(9) Garbage Collection (Allocation Rate) 16M(100%)->6M(38%)
+[34.549s][info][gc] GC(10) Garbage Collection (Allocation Rate) 6M(38%)->6M(38%)
+[34.643s][info][gc] GC(11) Garbage Collection (Allocation Rate) 6M(38%)->6M(38%)
+[34.751s][info][gc] GC(12) Garbage Collection (Allocation Rate) 6M(38%)->6M(38%)
+[34.842s][info][gc] GC(13) Garbage Collection (Allocation Rate) 6M(38%)->6M(38%)
+[34.954s][info][gc] GC(14) Garbage Collection (Allocation Rate) 6M(38%)->6M(38%)
+[35.045s][info][gc] GC(15) Garbage Collection (Allocation Rate) 6M(38%)->6M(38%)
+[35.140s][info][gc] GC(16) Garbage Collection (Allocation Rate) 6M(38%)->6M(38%)
+[35.343s][info][gc] GC(17) Garbage Collection (Allocation Rate) 6M(38%)->6M(38%)
+[35.452s][info][gc] GC(18) Garbage Collection (Allocation Rate) 6M(38%)->6M(38%)
+[35.543s][info][gc] GC(19) Garbage Collection (Allocation Rate) 6M(38%)->6M(38%)
+[35.652s][info][gc] GC(20) Garbage Collection (Allocation Rate) 6M(38%)->6M(38%)
+[35.744s][info][gc] GC(21) Garbage Collection (Allocation Rate) 6M(38%)->6M(38%)
+[35.841s][info][gc] GC(22) Garbage Collection (Allocation Rate) 6M(38%)->6M(38%)
+[35.948s][info][gc] GC(23) Garbage Collection (Allocation Rate) 6M(38%)->6M(38%)
+[36.044s][info][gc] GC(24) Garbage Collection (Allocation Rate) 6M(38%)->6M(38%)
+[36.152s][info][gc] GC(25) Garbage Collection (Allocation Rate) 6M(38%)->6M(38%)
+[64.739s][info][gc] GC(26) Garbage Collection (Proactive) 10M(62%)->10M(62%)
+[196.447s][info][gc] GC(27) Garbage Collection (Proactive) 12M(75%)->10M(62%)
