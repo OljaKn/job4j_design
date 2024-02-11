@@ -10,8 +10,8 @@ public class CommentGenerator implements Generate {
     public final String pathPhrases = "src/main/java/ru/job4j/gc/leak/files/phrases.txt";
 
     public final String separator = System.lineSeparator();
-    private static final List<Comment> COMMENTS = new ArrayList<>();
-    public final Integer count = 50;
+    private final List<Comment> comments = new ArrayList<>();
+    public final int count = 50;
     private List<String> phrases;
     private final UserGenerator userGenerator;
     private final Random random;
@@ -30,20 +30,19 @@ public class CommentGenerator implements Generate {
         }
     }
 
-    public static List<Comment> getComments() {
-        return COMMENTS;
+    public List<Comment> getComments() {
+        return comments;
     }
 
     @Override
     public void generate() {
-        COMMENTS.clear();
-        int count1 = count;
-        for (int i = 0; i < count1; i++) {
+        comments.clear();
+        for (int i = 0; i < count; i++) {
             String comment = String.format("%s%s%s%s%s",
                     phrases.get(random.nextInt(phrases.size())), separator,
                     phrases.get(random.nextInt(phrases.size())), separator,
                     phrases.get(random.nextInt(phrases.size())));
-            COMMENTS.add(new Comment(comment,
+            comments.add(new Comment(comment,
                     userGenerator.randomUser()));
         }
     }
