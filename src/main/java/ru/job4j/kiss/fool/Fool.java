@@ -1,8 +1,6 @@
 package ru.job4j.kiss.fool;
 
 import java.util.Scanner;
-import java.util.function.BiPredicate;
-import java.util.function.Predicate;
 
     public class Fool {
         public static void main(String[] args) {
