@@ -23,12 +23,12 @@ import java.util.function.Predicate;
         }
 
         public static String validate(int startAt) {
-            String rsl = "";
+            String rsl = String.valueOf(startAt);
             if (startAt % 3 == 0 && startAt % 5 == 0) {
                 rsl = "FizzBuzz";
             } else if (startAt % 3 == 0) {
                 rsl = "Fizz";
-            } else if (startAt % 3 == 0) {
+            } else if (startAt % 5 == 0) {
                 rsl = "Buzz";
             }
             return rsl;
