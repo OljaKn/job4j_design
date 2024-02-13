@@ -1,10 +1,6 @@
 package ru.job4j.kiss.fool;
 
 import org.junit.jupiter.api.Test;
-
-import java.util.Scanner;
-
-import static java.lang.System.in;
 import static org.assertj.core.api.Assertions.assertThat;
 
 
