@@ -14,9 +14,13 @@ class ReportJsonTest {
     public void whenOldGenerated() {
         MemoryStore store = new MemoryStore();
         Calendar now = Calendar.getInstance();
-        Employee worker = new Employee("Ivan", now, now, 100);
+        Employee worker1 = new Employee("Ivan", now, now, 100);
+        Employee worker2 = new Employee("Petya", now, now, 150);
+        Employee worker3 = new Employee("Olja", now, now, 200);
         DateTimeParser<Calendar> parser = new ReportDateTimeParser();
-        store.add(worker);
+        store.add(worker1);
+        store.add(worker2);
+        store.add(worker3);
         ReportJson json = new ReportJson(store, parser);
         String expected = "[\n"
                 +  "  {\n"
@@ -24,6 +28,18 @@ class ReportJsonTest {
                 +  "    \"name\": \"Ivan\",\n"
                 +  "    \"hired\": \"" + parser.parse(now) + "\",\n"
                 +  "    \"salary\": 100.0\n"
+                +  "  },\n"
+                +  "  {\n"
+                +  "    \"fired\": \"" + parser.parse(now) + "\",\n"
+                +  "    \"name\": \"Petya\",\n"
+                +  "    \"hired\": \"" + parser.parse(now) + "\",\n"
+                +  "    \"salary\": 150.0\n"
+                +  "  },\n"
+                +  "  {\n"
+                +  "    \"fired\": \"" + parser.parse(now) + "\",\n"
+                +  "    \"name\": \"Olja\",\n"
+                +  "    \"hired\": \"" + parser.parse(now) + "\",\n"
+                +  "    \"salary\": 200.0\n"
                 +  "  }\n"
                 +  "]";
         assertThat(json.generate(employee -> true)).isEqualTo(expected.toString());

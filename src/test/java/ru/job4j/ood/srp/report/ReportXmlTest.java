@@ -1,8 +1,9 @@
 package ru.job4j.ood.srp.report;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import ru.job4j.generics.MemStore;
+import ru.job4j.ood.srp.store.MemoryStore;
+import ru.job4j.ood.srp.store.MemoryStore.*;
 import ru.job4j.ood.srp.formatter.DateTimeParser;
 import ru.job4j.ood.srp.formatter.ReportDateTimeParser;
 import ru.job4j.ood.srp.model.Employee;
@@ -12,7 +13,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class ReportXmlTest {
    @Test
     void wheGenerateXmlReportWithTwoPeople() throws JAXBException {
-        MemStore store = new MemStore();
+        MemoryStore store = new MemoryStore();
         Calendar now = Calendar.getInstance();
         Employee employee1 = new Employee("Ivan", now, now, 100);
         Employee employee2 = new Employee("Olja", now, now, 50);
@@ -29,10 +30,10 @@ class ReportXmlTest {
                 +  "        <salary>100.0</salary>\n"
                 +  "    </employee>\n"
                 +  "    <employee>\n"
-                +  "        <name>Anna</name>\n"
+                +  "        <name>Olja</name>\n"
                 +  "        <hired>" + parser.parse(now) + "</hired>\n"
                 +  "        <fired>" + parser.parse(now) + "</fired>\n"
-                +  "        <salary>200.0</salary>\n"
+                +  "        <salary>50.0</salary>\n"
                 +  "    </employee>\n"
                 +  "</employees>\n";
         assertThat(report.generate(employee -> true)).isEqualTo(expected);
