@@ -18,14 +18,14 @@ class ReportJsonTest {
         DateTimeParser<Calendar> parser = new ReportDateTimeParser();
         store.add(worker);
         ReportJson json = new ReportJson(store, parser);
-        StringBuilder expected = new StringBuilder()
-                .append("Name; Hired; Fired; Salary;")
-                .append(System.lineSeparator())
-                .append(worker.getName()).append(" ")
-                .append(parser.parse(worker.getHired())).append(" ")
-                .append(parser.parse(worker.getFired())).append(" ")
-                .append(worker.getSalary())
-                .append(System.lineSeparator());
+        String expected = "[\n"
+                +  "  {\n"
+                +  "    \"fired\": \"" + parser.parse(now) + "\",\n"
+                +  "    \"name\": \"Ivan\",\n"
+                +  "    \"hired\": \"" + parser.parse(now) + "\",\n"
+                +  "    \"salary\": 100.0\n"
+                +  "  }\n"
+                +  "]";
         assertThat(json.generate(employee -> true)).isEqualTo(expected.toString());
     }
 
