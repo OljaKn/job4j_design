@@ -27,7 +27,7 @@ public class ReportXml implements Report {
     @Override
     public String generate(Predicate<Employee> filter) throws JAXBException {
         StringBuilder sb = new StringBuilder();
-        Employees employees = new Employees(store.findBy(employee -> true));
+        Employees employees = new Employees(store.findBy(filter));
         try (StringWriter writer = new StringWriter()) {
             JAXBContext context = JAXBContext.newInstance(Employees.class);
             Marshaller marshaller = context.createMarshaller();
@@ -48,7 +48,7 @@ public class ReportXml implements Report {
 
         }
         public Employees(List<Employee> employees) {
-
+            this.employees = employees;
         }
         public List<Employee> getEmployees() {
             return employees;

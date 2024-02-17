@@ -1,9 +1,7 @@
 package ru.job4j.ood.srp.report;
 
 import org.junit.jupiter.api.Test;
-import ru.job4j.generics.MemStore;
 import ru.job4j.ood.srp.store.MemoryStore;
-import ru.job4j.ood.srp.store.MemoryStore.*;
 import ru.job4j.ood.srp.formatter.DateTimeParser;
 import ru.job4j.ood.srp.formatter.ReportDateTimeParser;
 import ru.job4j.ood.srp.model.Employee;
@@ -23,18 +21,18 @@ class ReportXmlTest {
         ReportXml report = new ReportXml(store);
         String expected = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n"
                 +  "<employees>\n"
-                +  "    <employee>\n"
+                +  "    <employees>\n"
                 +  "        <name>Ivan</name>\n"
                 +  "        <hired>" + parser.parse(now) + "</hired>\n"
                 +  "        <fired>" + parser.parse(now) + "</fired>\n"
                 +  "        <salary>100.0</salary>\n"
-                +  "    </employee>\n"
-                +  "    <employee>\n"
+                +  "    </employees>\n"
+                +  "    <employees>\n"
                 +  "        <name>Olja</name>\n"
                 +  "        <hired>" + parser.parse(now) + "</hired>\n"
                 +  "        <fired>" + parser.parse(now) + "</fired>\n"
                 +  "        <salary>50.0</salary>\n"
-                +  "    </employee>\n"
+                +  "    </employees>\n"
                 +  "</employees>\n";
         assertThat(report.generate(employee -> true)).isEqualTo(expected);
     }
