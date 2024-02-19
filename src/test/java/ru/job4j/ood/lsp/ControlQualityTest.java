@@ -26,7 +26,7 @@ class ControlQualityTest {
         controlQuality.addStore(new Trash());
         LocalDate created = LocalDate.now().minusDays(14);
         LocalDate expire = LocalDate.now();
-        Food sausage = new Sausage("Sausage", expire, created,120, 1);
+        Food sausage = new Sausage("Sausage", expire, created, 120, 1);
         assertThat(controlQuality.checkQuality(sausage)).isTrue();
     }
 }
