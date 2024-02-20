@@ -22,5 +22,15 @@ public class ControlQuality {
         }
         return rsl;
     }
+    public void resort(Food food) throws ParseException {
+        List<Food> newList = new ArrayList<>();
+        for (Store store: store) {
+            newList.addAll(store.findAll());
+            store.findAll().clear();
+        }
+        for (Food foods: newList) {
+            checkQuality(food);
+        }
+    }
 }
 
